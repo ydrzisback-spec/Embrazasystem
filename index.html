@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050805">
+  <title>Embraza System — Atualização</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:#54ff00;
+      --green2:#9dff55;
+      --bg:#020402;
+      --panel:rgba(8,14,8,.82);
+      --line:rgba(84,255,0,.22);
+      --text:#f4fff1;
+      --muted:#9aa69a;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--bg);color:var(--text);
+      font-family:Inter,Arial,sans-serif;min-height:100vh;overflow-x:hidden;
+    }
+    body:before{
+      content:"";position:fixed;inset:0;z-index:-2;
+      background:
+        radial-gradient(circle at 50% 20%,rgba(44,255,0,.16),transparent 35%),
+        linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.94)),
+        url("assets/banner.jpg") center top/cover fixed;
+      filter:saturate(1.15);
+    }
+    body:after{
+      content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background-image:linear-gradient(rgba(84,255,0,.035) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(84,255,0,.035) 1px,transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom,black,transparent 85%);
+    }
+    header{
+      width:min(1120px,92%);margin:auto;padding:24px 0 12px;
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:white}
+    .brand img{width:52px;height:52px;border-radius:14px;object-fit:cover;border:1px solid var(--line);box-shadow:0 0 24px rgba(84,255,0,.25)}
+    .brand strong{font-family:Orbitron,sans-serif;letter-spacing:2px;font-size:14px}
+    .status{font-size:12px;color:#c9d2c7;border:1px solid var(--line);padding:9px 13px;border-radius:999px;background:rgba(0,0,0,.5)}
+    .dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);margin-right:7px}
+    main{width:min(1120px,92%);margin:auto;padding:24px 0 70px}
+    .hero{
+      min-height:410px;border:1px solid var(--line);border-radius:28px;overflow:hidden;
+      position:relative;display:flex;align-items:flex-end;
+      background:linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.5) 48%,rgba(0,0,0,.15)),url("assets/banner.jpg") center/cover;
+      box-shadow:0 0 70px rgba(33,255,0,.08),inset 0 0 60px rgba(0,0,0,.5);
+    }
+    .hero-content{padding:42px;max-width:700px}
+    .eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
+    h1{font-family:Orbitron,sans-serif;font-size:clamp(34px,6vw,68px);line-height:.98;margin:12px 0 18px;text-transform:uppercase;text-shadow:0 0 28px rgba(84,255,0,.2)}
+    h1 span{color:var(--green)}
+    .hero p{color:#d0d7cf;max-width:590px;line-height:1.65;margin:0}
+    .grid{display:grid;grid-template-columns:1.35fr .65fr;gap:18px;margin-top:18px}
+    .card{
+      background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:25px;
+      backdrop-filter:blur(12px);box-shadow:0 20px 50px rgba(0,0,0,.3)
+    }
+    .card h2{font-family:Orbitron,sans-serif;font-size:18px;margin:0 0 18px}
+    .version{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .version-number{font-family:Orbitron,sans-serif;font-size:31px;color:var(--green)}
+    .tag{font-size:11px;padding:7px 10px;border:1px solid rgba(84,255,0,.35);border-radius:8px;color:#b9ff9d;background:rgba(84,255,0,.07)}
+    .progress-wrap{margin:22px 0 12px}
+    .progress-head{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px}
+    .bar{height:10px;background:#101610;border-radius:999px;overflow:hidden;border:1px solid #1c2b1c}
+    .fill{height:100%;width:0%;background:linear-gradient(90deg,#35c800,var(--green),#d0ff9c);box-shadow:0 0 18px rgba(84,255,0,.7);transition:width .35s ease}
+    button{
+      width:100%;border:0;border-radius:13px;padding:15px 18px;font-weight:800;cursor:pointer;
+      color:#031000;background:var(--green);font-family:Inter,sans-serif;
+      box-shadow:0 0 25px rgba(84,255,0,.22);transition:.2s transform,.2s filter;
+    }
+    button:hover{transform:translateY(-2px);filter:brightness(1.08)}
+    button:disabled{cursor:not-allowed;opacity:.65;transform:none}
+    .release{display:grid;gap:12px}
+    .release div{padding:12px 13px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);color:#cbd3ca;font-size:13px}
+    .release b{color:white}
+    footer{width:min(1120px,92%);margin:auto;padding:0 0 35px;color:#687268;font-size:11px;text-align:center}
+    .toast{
+      position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;
+      background:#0b120b;border:1px solid var(--line);padding:13px 17px;border-radius:12px;color:#dfffd6;
+      box-shadow:0 10px 40px rgba(0,0,0,.5);transition:.3s;z-index:5;font-size:13px
+    }
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:760px){
+      header{padding-top:16px}.hero{min-height:470px}.hero-content{padding:27px}
+      .grid{grid-template-columns:1fr}.status{display:none}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#">
+    <img src="assets/logo.jpg" alt="Logo Embraza System">
+    <strong>EMBRAZA SYSTEM</strong>
+  </a>
+  <div class="status"><span class="dot"></span>Sistema online</div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Atualização oficial</div>
+      <h1>EMBRAZA <span>SYSTEM</span></h1>
+      <p>Uma nova versão está disponível. Atualize seu sistema para receber melhorias de desempenho, correções e novos recursos.</p>
+    </div>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Nova atualização disponível</h2>
+      <div class="version">
+        <div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:5px">VERSÃO ATUAL</div>
+          <div class="version-number">v2.0.0</div>
+        </div>
+        <div class="tag">UPDATE</div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-head"><span id="state">Pronto para atualizar</span><span id="percent">0%</span></div>
+        <div class="bar"><div class="fill" id="fill"></div></div>
+      </div>
+
+      <button id="updateBtn">ATUALIZAR AGORA</button>
+      <p style="font-size:11px;color:#697269;text-align:center;margin:12px 0 0">A tela de atualização é executada diretamente no GitHub Pages.</p>
+    </article>
+
+    <aside class="card">
+      <h2>O que mudou?</h2>
+      <div class="release">
+        <div><b>⚡ Desempenho</b><br>Otimizações gerais e carregamento mais rápido.</div>
+        <div><b>🛠 Correções</b><br>Ajustes de estabilidade e pequenos bugs.</div>
+        <div><b>🟢 Visual</b><br>Interface renovada na identidade do Embraza System.</div>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<footer>EMBRAZA SYSTEM • Criado por Embraza Morder • GitHub Pages</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+  const btn = document.getElementById('updateBtn');
+  const fill = document.getElementById('fill');
+  const percent = document.getElementById('percent');
+  const state = document.getElementById('state');
+  const toast = document.getElementById('toast');
+
+  function notify(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'),3200);
+  }
+
+  btn.addEventListener('click', () => {
+    if(btn.disabled) return;
+    btn.disabled = true;
+    let p = 0;
+    state.textContent = 'Preparando atualização...';
+
+    const timer = setInterval(() => {
+      p += Math.floor(Math.random()*8)+4;
+      if(p >= 100){
+        p = 100;
+        clearInterval(timer);
+        fill.style.width = p + '%';
+        percent.textContent = p + '%';
+        state.textContent = 'Atualização concluída!';
+        btn.textContent = 'ATUALIZADO ✓';
+        notify('EMBRAZA SYSTEM atualizado com sucesso!');
+        return;
+      }
+      fill.style.width = p + '%';
+      percent.textContent = p + '%';
+      state.textContent = p < 35 ? 'Baixando arquivos...' : p < 75 ? 'Instalando componentes...' : 'Finalizando...';
+    }, 260);
+  });
+</script>
+</body>
+</html>
